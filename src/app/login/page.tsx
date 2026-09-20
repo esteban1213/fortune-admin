@@ -54,7 +54,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-neutral-950 px-4">
-      <div className="w-full max-w-sm rounded-xl border border-neutral-800 bg-neutral-900 p-8">
+      <div className="w-full max-w-sm rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8">
         <h1 className="mb-1 text-xl font-semibold text-neutral-100">
           Fortune Admin
         </h1>

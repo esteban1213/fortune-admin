@@ -137,7 +137,7 @@ export default function NewFortunePage() {
             type="date"
             value={releaseDate}
             onChange={(e) => setReleaseDate(e.target.value)}
-            className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100 sm:w-auto"
           />
         </div>
 

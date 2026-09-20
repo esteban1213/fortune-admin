@@ -41,13 +41,13 @@ function ScheduleRow({ fortune }: { fortune: Fortune }) {
     <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-neutral-100">{fortune.text}</p>
+          <p className="break-words text-neutral-100 sm:truncate">{fortune.text}</p>
           <p className="mt-1 text-xs text-neutral-500">
             {fortune.submissionStatus} &middot; {fortune.category} &middot; {fortune.points} pts
             {fortune.usedDate && <> &middot; used {fortune.usedDate}</>}
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {fortune.submissionStatus === "approved" && !fortune.used && (
             <>
               <input
@@ -104,7 +104,7 @@ export default function FortunesPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-start justify-between gap-4">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="mb-1 text-2xl font-semibold text-neutral-100">Fortunes & Scheduling</h1>
           <p className="text-sm text-neutral-400">
@@ -114,18 +114,18 @@ export default function FortunesPage() {
         </div>
         <Link
           href="/fortunes/new"
-          className="shrink-0 rounded-md bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white"
+          className="shrink-0 self-start rounded-md bg-neutral-100 px-3 py-2 text-sm font-medium text-neutral-900 hover:bg-white sm:py-1.5"
         >
           New fortune
         </Link>
       </div>
 
-      <div className="mb-6 flex gap-1 border-b border-neutral-800">
+      <div className="-mx-4 mb-6 flex gap-1 overflow-x-auto border-b border-neutral-800 px-4 md:mx-0 md:px-0">
         {TABS.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-3 py-2 text-sm ${
+            className={`shrink-0 whitespace-nowrap px-3 py-2.5 text-sm md:py-2 ${
               tab === t.key
                 ? "border-b-2 border-neutral-100 text-neutral-100"
                 : "text-neutral-500 hover:text-neutral-300"

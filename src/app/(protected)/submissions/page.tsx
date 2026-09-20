@@ -77,7 +77,7 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
   }
 
   return (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-5">
+    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4 sm:p-5">
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -85,7 +85,7 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
         maxLength={500}
         className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-neutral-100"
       />
-      <p className="mt-1 text-xs text-neutral-500">
+      <p className="mt-1 break-all text-xs text-neutral-500">
         {fortune.year} &middot; from {fortune.creatorId}
       </p>
 
@@ -138,7 +138,7 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
 
       {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
 
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         <button
           onClick={approve}
           disabled={busy !== null}

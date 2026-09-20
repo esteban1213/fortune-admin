@@ -6,7 +6,7 @@ import { TodaysFortuneCard } from "@/components/todays-fortune-card";
 
 function StatCard({ label, value, href }: { label: string; value: number | string; href?: string }) {
   const content = (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-5 transition hover:border-neutral-700">
+    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4 transition sm:p-5 hover:border-neutral-700">
       <p className="text-sm text-neutral-400">{label}</p>
       <p className="mt-2 text-3xl font-semibold text-neutral-100">{value}</p>
     </div>
@@ -27,7 +27,7 @@ export default function OverviewPage() {
   return (
     <div>
       <h1 className="mb-1 text-2xl font-semibold text-neutral-100">Overview</h1>
-      <p className="mb-8 text-sm text-neutral-400">
+      <p className="mb-6 text-sm text-neutral-400 sm:mb-8">
         Live counts across the fortunes collection.
       </p>
 
@@ -42,7 +42,7 @@ export default function OverviewPage() {
       {loading ? (
         <p className="text-neutral-500">Loading...</p>
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
           <StatCard label="Total fortunes" value={total} href="/fortunes" />
           <StatCard label="Used" value={used} />
           <StatCard label="Pending submissions" value={pending} href="/submissions" />

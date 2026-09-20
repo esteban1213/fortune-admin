@@ -40,9 +40,9 @@ export function TodaysFortuneCard({ fortunes }: { fortunes: Fortune[] }) {
   const isStale = todaysFortune && todaysFortune.date !== pacificToday();
 
   return (
-    <div className="mb-8 rounded-xl border border-neutral-800 bg-neutral-900 p-5">
-      <div className="flex items-start justify-between gap-4">
-        <div>
+    <div className="mb-6 rounded-xl border border-neutral-800 bg-neutral-900 p-4 sm:mb-8 sm:p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-sm text-neutral-400">Today&apos;s fortune</p>
           {loading ? (
             <p className="mt-2 text-neutral-500">Loading...</p>

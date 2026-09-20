@@ -24,7 +24,7 @@ const KIND_LABELS: Record<FeedbackKind, string> = {
 
 function FeedbackCard({ item }: { item: Feedback }) {
   return (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-5">
+    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between gap-3">
         <span
           className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
@@ -40,7 +40,7 @@ function FeedbackCard({ item }: { item: Feedback }) {
         )}
       </div>
       <p className="whitespace-pre-wrap break-words text-neutral-100">{item.message}</p>
-      <p className="mt-3 text-xs text-neutral-500">
+      <p className="mt-3 break-all text-xs text-neutral-500">
         {item.email ?? item.userId ?? "Anonymous"}
       </p>
     </div>
@@ -60,7 +60,7 @@ export default function FeedbackPage() {
         Feature requests and feedback sent from the app, newest first.
       </p>
 
-      <div className="mb-6 flex gap-2">
+      <div className="mb-6 flex flex-wrap gap-2">
         {FILTERS.map((f) => {
           const count =
             f.value === "all"
