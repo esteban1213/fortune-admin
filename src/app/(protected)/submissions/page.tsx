@@ -77,25 +77,25 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
   }
 
   return (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4 sm:p-5">
+    <div className="rounded-xl border border-line bg-surface p-4 sm:p-5">
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={2}
         maxLength={500}
-        className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-neutral-100"
+        className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-foreground"
       />
-      <p className="mt-1 break-all text-xs text-neutral-500">
+      <p className="mt-1 break-all text-xs text-subtle">
         {fortune.year} &middot; from {fortune.creatorId}
       </p>
 
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div>
-          <label className="mb-1 block text-xs text-neutral-400">Category</label>
+          <label className="mb-1 block text-xs text-muted">Category</label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+            className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -105,38 +105,38 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
           </select>
         </div>
         <div>
-          <label className="mb-1 block text-xs text-neutral-400">Points</label>
+          <label className="mb-1 block text-xs text-muted">Points</label>
           <input
             type="number"
             min={0}
             value={points}
             onChange={(e) => setPoints(Number(e.target.value))}
-            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+            className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs text-neutral-400">Release date (optional)</label>
+          <label className="mb-1 block text-xs text-muted">Release date (optional)</label>
           <input
             type="date"
             value={releaseDate}
             onChange={(e) => setReleaseDate(e.target.value)}
-            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+            className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
           />
         </div>
         <div className="flex items-end gap-2">
-          <label className="flex items-center gap-2 text-sm text-neutral-300">
+          <label className="flex items-center gap-2 text-sm text-foreground-soft">
             <input
               type="checkbox"
               checked={nsfw}
               onChange={(e) => setNsfw(e.target.checked)}
-              className="h-4 w-4 rounded border-neutral-700 bg-neutral-800"
+              className="h-4 w-4 rounded border-line-strong bg-surface-2"
             />
             NSFW
           </label>
         </div>
       </div>
 
-      {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
+      {error && <p className="mt-3 text-sm text-red-600 dark:text-red-400">{error}</p>}
 
       <div className="mt-4 flex flex-wrap gap-2">
         <button
@@ -149,14 +149,14 @@ function SubmissionCard({ fortune }: { fortune: Fortune }) {
         <button
           onClick={deny}
           disabled={busy !== null}
-          className="rounded-md bg-red-900 px-3 py-1.5 text-sm font-medium text-red-100 hover:bg-red-800 disabled:opacity-50"
+          className="rounded-md bg-red-100 px-3 py-1.5 text-sm font-medium text-red-800 hover:bg-red-200 dark:bg-red-900 dark:text-red-100 dark:hover:bg-red-800 disabled:opacity-50"
         >
           {busy === "deny" ? "Denying..." : "Deny"}
         </button>
         <button
           onClick={save}
           disabled={busy !== null}
-          className="rounded-md border border-neutral-700 px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800 disabled:opacity-40"
+          className="rounded-md border border-line-strong px-3 py-1.5 text-sm text-foreground-soft hover:bg-surface-2 disabled:opacity-40"
         >
           {busy === "save" ? "Saving..." : "Save changes"}
         </button>
@@ -171,22 +171,22 @@ export default function SubmissionsPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-semibold text-neutral-100">Submissions</h1>
-      <p className="mb-8 text-sm text-neutral-400">
+      <h1 className="mb-1 text-2xl font-semibold text-foreground">Submissions</h1>
+      <p className="mb-8 text-sm text-muted">
         Review user-submitted fortunes. Approving sets the points and category that get
         used once it&apos;s published.
       </p>
 
       {error && (
-        <p className="mb-6 rounded-md border border-red-900 bg-red-950/50 px-4 py-3 text-sm text-red-300">
+        <p className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
           {error}
         </p>
       )}
 
       {loading ? (
-        <p className="text-neutral-500">Loading...</p>
+        <p className="text-subtle">Loading...</p>
       ) : pending.length === 0 ? (
-        <p className="text-neutral-500">No pending submissions.</p>
+        <p className="text-subtle">No pending submissions.</p>
       ) : (
         <div className="space-y-4">
           {pending.map((f) => (

@@ -38,11 +38,11 @@ function ScheduleRow({ fortune }: { fortune: Fortune }) {
   }
 
   return (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4">
+    <div className="rounded-xl border border-line bg-surface p-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0 flex-1">
-          <p className="break-words text-neutral-100 sm:truncate">{fortune.text}</p>
-          <p className="mt-1 text-xs text-neutral-500">
+          <p className="break-words text-foreground sm:truncate">{fortune.text}</p>
+          <p className="mt-1 text-xs text-subtle">
             {fortune.submissionStatus} &middot; {fortune.category} &middot; {fortune.points} pts
             {fortune.usedDate && <> &middot; used {fortune.usedDate}</>}
           </p>
@@ -54,12 +54,12 @@ function ScheduleRow({ fortune }: { fortune: Fortune }) {
                 type="date"
                 value={releaseDate}
                 onChange={(e) => setReleaseDate(e.target.value)}
-                className="rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+                className="rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
               />
               <button
                 onClick={save}
                 disabled={!dirty || saving}
-                className="rounded-md bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white disabled:opacity-40"
+                className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-40"
               >
                 {saving ? "Saving..." : "Save"}
               </button>
@@ -67,13 +67,13 @@ function ScheduleRow({ fortune }: { fortune: Fortune }) {
           )}
           <button
             onClick={() => setEditing((v) => !v)}
-            className="rounded-md border border-neutral-700 px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800"
+            className="rounded-md border border-line-strong px-3 py-1.5 text-sm text-foreground-soft hover:bg-surface-2"
           >
             {editing ? "Close" : "Edit"}
           </button>
         </div>
       </div>
-      {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+      {error && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>}
       {editing && <FortuneEditor fortune={fortune} onDone={() => setEditing(false)} />}
     </div>
   );
@@ -106,29 +106,29 @@ export default function FortunesPage() {
     <div>
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="mb-1 text-2xl font-semibold text-neutral-100">Fortunes & Scheduling</h1>
-          <p className="text-sm text-neutral-400">
+          <h1 className="mb-1 text-2xl font-semibold text-foreground">Fortunes & Scheduling</h1>
+          <p className="text-sm text-muted">
             Every fortune lives here, no matter who submitted it or its status — click Edit
             on any row to change text, category, points, status, or scheduling.
           </p>
         </div>
         <Link
           href="/fortunes/new"
-          className="shrink-0 self-start rounded-md bg-neutral-100 px-3 py-2 text-sm font-medium text-neutral-900 hover:bg-white sm:py-1.5"
+          className="shrink-0 self-start rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary-hover sm:py-1.5"
         >
           New fortune
         </Link>
       </div>
 
-      <div className="-mx-4 mb-6 flex gap-1 overflow-x-auto border-b border-neutral-800 px-4 md:mx-0 md:px-0">
+      <div className="-mx-4 mb-6 flex gap-1 overflow-x-auto border-b border-line px-4 md:mx-0 md:px-0">
         {TABS.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
             className={`shrink-0 whitespace-nowrap px-3 py-2.5 text-sm md:py-2 ${
               tab === t.key
-                ? "border-b-2 border-neutral-100 text-neutral-100"
-                : "text-neutral-500 hover:text-neutral-300"
+                ? "border-b-2 border-foreground text-foreground"
+                : "text-subtle hover:text-foreground-soft"
             }`}
           >
             {t.label}
@@ -137,15 +137,15 @@ export default function FortunesPage() {
       </div>
 
       {error && (
-        <p className="mb-6 rounded-md border border-red-900 bg-red-950/50 px-4 py-3 text-sm text-red-300">
+        <p className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
           {error}
         </p>
       )}
 
       {loading ? (
-        <p className="text-neutral-500">Loading...</p>
+        <p className="text-subtle">Loading...</p>
       ) : filtered.length === 0 ? (
-        <p className="text-neutral-500">Nothing here.</p>
+        <p className="text-subtle">Nothing here.</p>
       ) : (
         <div className="space-y-3">
           {filtered.map((f) => (

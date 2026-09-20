@@ -56,18 +56,18 @@ export default function NewFortunePage() {
 
   return (
     <div className="max-w-xl">
-      <Link href="/fortunes" className="mb-4 inline-block text-sm text-neutral-500 hover:text-neutral-300">
+      <Link href="/fortunes" className="mb-4 inline-block text-sm text-subtle hover:text-foreground-soft">
         &larr; Back to fortunes
       </Link>
-      <h1 className="mb-1 text-2xl font-semibold text-neutral-100">New fortune</h1>
-      <p className="mb-8 text-sm text-neutral-400">
+      <h1 className="mb-1 text-2xl font-semibold text-foreground">New fortune</h1>
+      <p className="mb-8 text-sm text-muted">
         Created fortunes are auto-approved and enter the pool immediately (or on the
         release date you pick).
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block text-sm text-neutral-300" htmlFor="text">
+          <label className="mb-1 block text-sm text-foreground-soft" htmlFor="text">
             Fortune text
           </label>
           <textarea
@@ -78,17 +78,17 @@ export default function NewFortunePage() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Good things come to those who..."
-            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2 text-neutral-100 outline-none focus:border-neutral-500"
+            className="w-full rounded-md border border-line-strong bg-surface-2 px-3 py-2 text-foreground outline-none focus:border-subtle"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div>
-            <label className="mb-1 block text-xs text-neutral-400">Category</label>
+            <label className="mb-1 block text-xs text-muted">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+              className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
             >
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>
@@ -98,31 +98,31 @@ export default function NewFortunePage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs text-neutral-400">Points</label>
+            <label className="mb-1 block text-xs text-muted">Points</label>
             <input
               type="number"
               min={0}
               value={points}
               onChange={(e) => setPoints(Number(e.target.value))}
-              className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+              className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-neutral-400">Year</label>
+            <label className="mb-1 block text-xs text-muted">Year</label>
             <input
               type="number"
               value={year}
               onChange={(e) => setYear(Number(e.target.value))}
-              className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+              className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
             />
           </div>
           <div className="flex items-end gap-2">
-            <label className="flex items-center gap-2 text-sm text-neutral-300">
+            <label className="flex items-center gap-2 text-sm text-foreground-soft">
               <input
                 type="checkbox"
                 checked={nsfw}
                 onChange={(e) => setNsfw(e.target.checked)}
-                className="h-4 w-4 rounded border-neutral-700 bg-neutral-800"
+                className="h-4 w-4 rounded border-line-strong bg-surface-2"
               />
               NSFW
             </label>
@@ -130,23 +130,23 @@ export default function NewFortunePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-xs text-neutral-400">
+          <label className="mb-1 block text-xs text-muted">
             Release date (optional — leave blank to join the random pool)
           </label>
           <input
             type="date"
             value={releaseDate}
             onChange={(e) => setReleaseDate(e.target.value)}
-            className="w-full rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100 sm:w-auto"
+            className="w-full rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground sm:w-auto"
           />
         </div>
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
 
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-md bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-white disabled:opacity-50"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
         >
           {submitting ? "Creating..." : "Create fortune"}
         </button>

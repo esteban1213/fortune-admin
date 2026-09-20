@@ -40,40 +40,40 @@ export function TodaysFortuneCard({ fortunes }: { fortunes: Fortune[] }) {
   const isStale = todaysFortune && todaysFortune.date !== pacificToday();
 
   return (
-    <div className="mb-6 rounded-xl border border-neutral-800 bg-neutral-900 p-4 sm:mb-8 sm:p-5">
+    <div className="mb-6 rounded-xl border border-line bg-surface p-4 sm:mb-8 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-sm text-neutral-400">Today&apos;s fortune</p>
+          <p className="text-sm text-muted">Today&apos;s fortune</p>
           {loading ? (
-            <p className="mt-2 text-neutral-500">Loading...</p>
+            <p className="mt-2 text-subtle">Loading...</p>
           ) : todaysFortune ? (
             <>
-              <p className="mt-2 text-lg text-neutral-100">{todaysFortune.text}</p>
-              <p className="mt-1 text-xs text-neutral-500">
+              <p className="mt-2 text-lg text-foreground">{todaysFortune.text}</p>
+              <p className="mt-1 text-xs text-subtle">
                 {todaysFortune.category} &middot; {todaysFortune.points} pts &middot;{" "}
                 {todaysFortune.date}
                 {isStale && (
-                  <span className="ml-2 rounded bg-amber-900/50 px-1.5 py-0.5 text-amber-300">
+                  <span className="ml-2 rounded bg-amber-100 px-1.5 py-0.5 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">
                     not refreshed for today yet
                   </span>
                 )}
               </p>
             </>
           ) : (
-            <p className="mt-2 text-neutral-500">Nothing published yet.</p>
+            <p className="mt-2 text-subtle">Nothing published yet.</p>
           )}
         </div>
         <button
           onClick={() => setPickerOpen((v) => !v)}
-          className="shrink-0 rounded-md border border-neutral-700 px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800"
+          className="shrink-0 rounded-md border border-line-strong px-3 py-1.5 text-sm text-foreground-soft hover:bg-surface-2"
         >
           {pickerOpen ? "Cancel" : "Override"}
         </button>
       </div>
 
       {pickerOpen && (
-        <div className="mt-4 border-t border-neutral-800 pt-4">
-          <p className="mb-2 text-xs text-neutral-500">
+        <div className="mt-4 border-t border-line pt-4">
+          <p className="mb-2 text-xs text-subtle">
             Hard-sets this as today&apos;s ({pacificToday()}) fortune immediately, replacing
             whatever&apos;s live. Marks it used so the nightly picker won&apos;t reuse it.
           </p>
@@ -81,7 +81,7 @@ export function TodaysFortuneCard({ fortunes }: { fortunes: Fortune[] }) {
             <select
               value={selectedId}
               onChange={(e) => setSelectedId(e.target.value)}
-              className="flex-1 rounded-md border border-neutral-700 bg-neutral-800 px-2 py-1.5 text-sm text-neutral-100"
+              className="flex-1 rounded-md border border-line-strong bg-surface-2 px-2 py-1.5 text-sm text-foreground"
             >
               <option value="">Select an approved fortune&hellip;</option>
               {candidates.map((f) => (
@@ -95,17 +95,17 @@ export function TodaysFortuneCard({ fortunes }: { fortunes: Fortune[] }) {
             <button
               onClick={handlePublish}
               disabled={!selectedId || publishing}
-              className="rounded-md bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-white disabled:opacity-40"
+              className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-40"
             >
               {publishing ? "Publishing..." : "Publish now"}
             </button>
           </div>
           {candidates.length === 0 && (
-            <p className="mt-2 text-sm text-neutral-500">
+            <p className="mt-2 text-sm text-subtle">
               No approved fortunes yet — approve one in Submissions first.
             </p>
           )}
-          {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+          {error && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>}
         </div>
       )}
     </div>

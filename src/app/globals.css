@@ -1,22 +1,56 @@
 @import "tailwindcss";
 
+/* Semantic palette. Components use these (bg-surface, text-muted, ...) rather than
+   raw neutral-* shades so the whole app follows the system color scheme. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  color-scheme: light dark;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #f4f4f5;
+  --foreground: #171717;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --foreground-soft: #404040;
+  --muted: #525252;
+  --subtle: #737373;
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+  --primary-hover: #404040;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f5f5f5;
+    --surface: #171717;
+    --surface-2: #262626;
+    --line: #262626;
+    --line-strong: #404040;
+    --foreground-soft: #d4d4d4;
+    --muted: #a3a3a3;
+    --subtle: #737373;
+    --primary: #f5f5f5;
+    --primary-foreground: #171717;
+    --primary-hover: #ffffff;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-foreground-soft: var(--foreground-soft);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {

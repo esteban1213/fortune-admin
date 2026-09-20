@@ -26,8 +26,8 @@ function SidebarContent({
   return (
     <>
       <div className="mb-6 px-2">
-        <p className="text-sm font-semibold text-neutral-100">Fortune Admin</p>
-        <p className="truncate text-xs text-neutral-500">{email}</p>
+        <p className="text-sm font-semibold text-foreground">Fortune Admin</p>
+        <p className="truncate text-xs text-subtle">{email}</p>
       </div>
       <nav className="flex flex-1 flex-col gap-1">
         {NAV_ITEMS.map((item) => {
@@ -39,8 +39,8 @@ function SidebarContent({
               onClick={onNavigate}
               className={`rounded-md px-3 py-2.5 text-sm md:py-2 ${
                 active
-                  ? "bg-neutral-800 text-neutral-100"
-                  : "text-neutral-400 hover:bg-neutral-900 hover:text-neutral-200"
+                  ? "bg-surface-2 text-foreground"
+                  : "text-muted hover:bg-surface hover:text-foreground"
               }`}
             >
               {item.label}
@@ -50,7 +50,7 @@ function SidebarContent({
       </nav>
       <button
         onClick={onSignOut}
-        className="rounded-md px-3 py-2.5 text-left text-sm text-neutral-500 hover:bg-neutral-900 hover:text-neutral-300 md:py-2"
+        className="rounded-md px-3 py-2.5 text-left text-sm text-subtle hover:bg-surface hover:text-foreground-soft md:py-2"
       >
         Sign out
       </button>
@@ -79,7 +79,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-neutral-400">
+      <div className="flex min-h-screen items-center justify-center text-muted">
         Loading...
       </div>
     );
@@ -90,13 +90,13 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
   if (!isAdmin) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center">
-        <h1 className="text-lg font-semibold text-neutral-100">Not authorized</h1>
-        <p className="max-w-sm text-sm text-neutral-400">
+        <h1 className="text-lg font-semibold text-foreground">Not authorized</h1>
+        <p className="max-w-sm text-sm text-muted">
           Signed in as {user.email}, which isn&apos;t the admin account for this dashboard.
         </p>
         <button
           onClick={() => signOut()}
-          className="rounded-md border border-neutral-700 px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800"
+          className="rounded-md border border-line-strong px-3 py-1.5 text-sm text-foreground-soft hover:bg-surface-2"
         >
           Sign out
         </button>
@@ -109,18 +109,18 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       {/* Mobile top bar */}
-      <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-neutral-800 bg-neutral-950 px-4 py-3 md:hidden">
+      <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-line bg-background px-4 py-3 md:hidden">
         <button
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-expanded={menuOpen}
-          className="-ml-2 flex h-10 w-10 items-center justify-center rounded-md text-neutral-300 hover:bg-neutral-900"
+          className="-ml-2 flex h-10 w-10 items-center justify-center rounded-md text-foreground-soft hover:bg-surface"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
             <path d="M3 5h14M3 10h14M3 15h14" />
           </svg>
         </button>
-        <p className="truncate text-sm font-semibold text-neutral-100">{currentLabel}</p>
+        <p className="truncate text-sm font-semibold text-foreground">{currentLabel}</p>
       </header>
 
       {/* Mobile drawer */}
@@ -131,7 +131,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
             onClick={() => setMenuOpen(false)}
             aria-hidden="true"
           />
-          <aside className="absolute inset-y-0 left-0 flex w-64 max-w-[80vw] flex-col border-r border-neutral-800 bg-neutral-950 p-4">
+          <aside className="absolute inset-y-0 left-0 flex w-64 max-w-[80vw] flex-col border-r border-line bg-background p-4">
             <SidebarContent
               email={user.email}
               pathname={pathname}
@@ -143,7 +143,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
       )}
 
       {/* Desktop sidebar */}
-      <aside className="hidden w-56 shrink-0 flex-col border-r border-neutral-800 bg-neutral-950 p-4 md:flex">
+      <aside className="hidden w-56 shrink-0 flex-col border-r border-line bg-background p-4 md:flex">
         <SidebarContent email={user.email} pathname={pathname} onSignOut={() => signOut()} />
       </aside>
 

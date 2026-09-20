@@ -6,9 +6,9 @@ import { TodaysFortuneCard } from "@/components/todays-fortune-card";
 
 function StatCard({ label, value, href }: { label: string; value: number | string; href?: string }) {
   const content = (
-    <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4 transition sm:p-5 hover:border-neutral-700">
-      <p className="text-sm text-neutral-400">{label}</p>
-      <p className="mt-2 text-3xl font-semibold text-neutral-100">{value}</p>
+    <div className="rounded-xl border border-line bg-surface p-4 transition sm:p-5 hover:border-line-strong">
+      <p className="text-sm text-muted">{label}</p>
+      <p className="mt-2 text-3xl font-semibold text-foreground">{value}</p>
     </div>
   );
   return href ? <Link href={href}>{content}</Link> : content;
@@ -26,13 +26,13 @@ export default function OverviewPage() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-semibold text-neutral-100">Overview</h1>
-      <p className="mb-6 text-sm text-neutral-400 sm:mb-8">
+      <h1 className="mb-1 text-2xl font-semibold text-foreground">Overview</h1>
+      <p className="mb-6 text-sm text-muted sm:mb-8">
         Live counts across the fortunes collection.
       </p>
 
       {error && (
-        <p className="mb-6 rounded-md border border-red-900 bg-red-950/50 px-4 py-3 text-sm text-red-300">
+        <p className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
           {error}
         </p>
       )}
@@ -40,7 +40,7 @@ export default function OverviewPage() {
       {!loading && <TodaysFortuneCard fortunes={fortunes} />}
 
       {loading ? (
-        <p className="text-neutral-500">Loading...</p>
+        <p className="text-subtle">Loading...</p>
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
           <StatCard label="Total fortunes" value={total} href="/fortunes" />
